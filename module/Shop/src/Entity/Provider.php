@@ -4,7 +4,7 @@ namespace Shop\Entity;
 
 /**
  * @ORM\Entity()
- * @ORM\Table(name="shop_locations")
+ * @ORM\Table(name="shop_providers")
  */
 class Provider
 {

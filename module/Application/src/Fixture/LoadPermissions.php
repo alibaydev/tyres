@@ -2,9 +2,6 @@
 
 namespace Application\Fixture;
 
-use AMS\Entity\Language;
-use AMS\Entity\Site;
-use Application\Service\FixtureOrderHelper;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use User\Entity\Permission;

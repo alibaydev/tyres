@@ -33,8 +33,8 @@ return [
     'DoctrineModule',
     'DoctrineORMModule',
     'DoctrineDataFixtureModule',
-    'Location',
     'User',
     'Car',
+    'Location',
     'Application',
 ];

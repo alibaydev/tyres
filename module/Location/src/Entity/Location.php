@@ -40,8 +40,8 @@ class Location
 
     /**
      * @var \Location\Entity\Location
-     * @ORM\ManyToOne(targetEntity="\Car\Entity\DetailModel", fetch="LAZY", nullable=true)
-     * @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="\Location\Entity\Location", fetch="LAZY")
+     * @ORM\JoinColumn(name="parent_id", referencedColumnName="id", nullable=true)
      */
     private $parent;
 

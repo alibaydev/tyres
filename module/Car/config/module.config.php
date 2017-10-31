@@ -2,8 +2,11 @@
 
 namespace Car;
 
+use Car\Controller\Factory\RimControllerFactory;
+use Car\Controller\Factory\TireControllerFactory;
 use Zend\Router\Http\Literal;
 use Zend\ServiceManager\Factory\InvokableFactory;
+use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
 
 return [
     'router' => [
@@ -47,8 +50,22 @@ return [
     ],
     'controllers' => [
         'factories' => [
-            Controller\RimController::class => InvokableFactory::class,
-            Controller\TireController::class => InvokableFactory::class,
+            Controller\RimController::class => RimControllerFactory::class,
+            Controller\TireController::class => TireControllerFactory::class,
         ],
+    ],
+    'doctrine' => [
+        'driver' => [
+            __NAMESPACE__ . '_driver' => [
+                'class' => AnnotationDriver::class,
+                'cache' => 'array',
+                'paths' => [__DIR__ . '/../src/Entity']
+            ],
+            'orm_default' => [
+                'drivers' => [
+                    __NAMESPACE__ . '\Entity' => __NAMESPACE__ . '_driver'
+                ]
+            ]
+        ]
     ],
 ];

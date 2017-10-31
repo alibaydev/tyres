@@ -2,7 +2,6 @@
 
 namespace Application\Fixture;
 
-use Application\Service\FixtureOrderHelper;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use User\Entity\Role;
@@ -20,6 +19,8 @@ class LoadUsers extends BaseFixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
+        echo 'LOAD USERS';
+
         $user = $this->entityManager->getRepository(User::class)->findOneBy([]);
         if ($user==null) {
             $user = new User();
