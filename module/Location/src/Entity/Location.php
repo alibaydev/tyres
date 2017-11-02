@@ -11,15 +11,20 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Location
 {
-    const TYPE_COUNTRY = 'COUNTRY';
-    const TYPE_REGION = 'REGION';
-    const TYPE_CITY = 'CITY';
+    const TYPE_COUNTRY = 1;
+    const TYPE_REGION = 2;
+    const TYPE_CITY = 3;
 
     public static $types = [
-        self::TYPE_COUNTRY,
-        self::TYPE_REGION,
-        self::TYPE_CITY,
+        self::TYPE_COUNTRY => 'COUNTRY',
+        self::TYPE_REGION => 'REGION',
+        self::TYPE_CITY => 'CITY',
     ];
+
+    public static function getTypeByValue($type, $default = 'Unknown')
+    {
+        return array_key_exists($type, self::$types) ? self::$types[$type] : $default;
+    }
 
     /**
      * @ORM\Id

@@ -11,30 +11,40 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Rim
 {
-    const FLANGE_B = 'B';
-    const FLANGE_D = 'D';
-    const FLANGE_J = 'J';
-    const FLANGE_JJ = 'JJ';
-    const FLANGE_JK = 'JK';
-    const FLANGE_K = 'K';
-    const FLANGE_P = 'P';
+    const FLANGE_B = 1;
+    const FLANGE_D = 2;
+    const FLANGE_J = 3;
+    const FLANGE_JJ = 4;
+    const FLANGE_JK = 5;
+    const FLANGE_K = 6;
+    const FLANGE_P = 7;
 
-    const SYMMETRY_A = 'A';
-    const SYMMETRY_S = 'S';
+    const SYMMETRY_A = 1;
+    const SYMMETRY_S = 2;
 
     public static $flanges = [
-        self::FLANGE_B,
-        self::FLANGE_D,
-        self::FLANGE_J,
-        self::FLANGE_JJ,
-        self::FLANGE_K,
-        self::FLANGE_P,
+        self::FLANGE_B => 'B',
+        self::FLANGE_D => 'D',
+        self::FLANGE_J => 'J',
+        self::FLANGE_JJ => 'JJ',
+        self::FLANGE_K => 'K',
+        self::FLANGE_P => 'P',
     ];
 
     public static $symmetries = [
-        self::SYMMETRY_A,
-        self::SYMMETRY_S,
+        self::SYMMETRY_A => 'A',
+        self::SYMMETRY_S => 'S',
     ];
+
+    public static function getFlangeByValue($flage, $default = 'Unknown')
+    {
+        return array_key_exists($flage, self::$flanges) ? self::$flanges[$flage] : $default;
+    }
+
+    public static function getSymmetryByValue($symmetry, $default = 'Unknown')
+    {
+        return array_key_exists($symmetry, self::$symmetries) ? self::$symmetries[$symmetry] : $default ;
+    }
 
     /**
      * @ORM\Id

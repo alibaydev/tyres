@@ -2,6 +2,7 @@
 
 namespace Migrations;
 
+use Application\Service\MigrationHelper;
 use Doctrine\DBAL\Migrations\AbstractMigration;
 use Doctrine\DBAL\Schema\Schema;
 
@@ -84,11 +85,13 @@ class Version20171005072008 extends AbstractMigration
      */
     public function down(Schema $schema)
     {
-        $schema->dropTable('user_users_roles');
-        $schema->dropTable('user_roles_permissions');
-        $schema->dropTable('user_permissions');
-        $schema->dropTable('user_roles_hierarchy');
-        $schema->dropTable('user_roles');
-        $schema->dropTable('user_users');
+        MigrationHelper::safeDown($schema, [
+            'user_users_roles',
+            'user_roles_permissions',
+            'user_permissions',
+            'user_roles_hierarchy',
+            'user_roles',
+            'user_users',
+        ]);
     }
 }

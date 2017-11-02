@@ -11,9 +11,20 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Tire
 {
-    const SEASON_SUMMER = 'SUMMER';
-    const SEASON_WINTER = 'WINTER';
-    const SEASON_ALL = 'ALL';
+    const SEASON_SUMMER = 1;
+    const SEASON_WINTER = 2;
+    const SEASON_ALL = 3;
+
+    public static $seasons = [
+        self::SEASON_SUMMER => 'SUMMER',
+        self::SEASON_WINTER => 'WINTER',
+        self::SEASON_ALL => 'ALL',
+    ];
+
+    public static function getSeasonByValue($season, $default = 'Unknown')
+    {
+        return array_key_exists($season, self::$seasons) ? self::$seasons[$season] : $default;
+    }
 
     /**
      * @ORM\Id

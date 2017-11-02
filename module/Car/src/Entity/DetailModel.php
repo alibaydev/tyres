@@ -12,13 +12,18 @@ use Doctrine\Common\Collections\ArrayCollection;
 class DetailModel
 {
 
-    const TYPE_RIM = 'RIM';
-    const TYPE_TIRE = 'TIRE';
+    const TYPE_RIM = 1;
+    const TYPE_TIRE = 2;
 
     public static $types = [
-        self::TYPE_RIM,
-        self::TYPE_TIRE,
+        self::TYPE_RIM => 'RIM',
+        self::TYPE_TIRE => 'TIRE',
     ];
+
+    public static function getTypeByValue($type, $default = 'Unknown')
+    {
+        return array_key_exists($type, self::$types) ? self::$types[$type] : $default;
+    }
 
     /**
      * @ORM\Id
