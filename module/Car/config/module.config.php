@@ -2,11 +2,12 @@
 
 namespace Car;
 
+use Car\Controller\Factory\ModelControllerFactory;
 use Car\Controller\Factory\RimControllerFactory;
 use Car\Controller\Factory\TireControllerFactory;
-use Zend\Router\Http\Literal;
-use Zend\ServiceManager\Factory\InvokableFactory;
 use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
+use Zend\Router\Http\Literal;
+use Zend\Router\Http\Segment;
 
 return [
     'router' => [
@@ -31,11 +32,25 @@ return [
                     ],
                 ],
             ],
+
+            'rest-models' => [
+                'type' => Segment::class,
+                'options' => [
+                    'route'    => '/brands/:brandId/models',
+                    'defaults' => [
+                        'controller' => Controller\ModelController::class,
+                        'action'     => 'searchByBrand',
+                    ],
+                ],
+            ]
         ],
     ],
     'view_manager' => [
         'template_path_stack' => [
             __DIR__ . '/../view',
+        ],
+        'strategies' => [
+            'ViewJsonStrategy',
         ],
     ],
     'access_filter' => [
@@ -46,12 +61,16 @@ return [
             Controller\TireController::class => [
                 ['actions' => ['searchByParams'], 'allow' => '*'],
             ],
+            Controller\ModelController::class => [
+                ['actions' => ['searchByBrand'], 'allow' => '*'],
+            ],
         ]
     ],
     'controllers' => [
         'factories' => [
             Controller\RimController::class => RimControllerFactory::class,
             Controller\TireController::class => TireControllerFactory::class,
+            Controller\ModelController::class => ModelControllerFactory::class,
         ],
     ],
     'doctrine' => [

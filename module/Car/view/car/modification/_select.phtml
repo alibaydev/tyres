@@ -2,7 +2,7 @@
     <div class="col-md-6">
         <div class="form-group">
             <label>Марка</label>
-            <select class="form-control select2">
+            <select class="form-control select2 select-brand">
                 <option value="0">Выберите марку</option>
                 <?php foreach ($brands as $brand) { ?>
                     <option value="<?= $brand->getId() ?>"><?= $brand->getName() ?></option>
@@ -11,7 +11,7 @@
         </div>
         <div class="form-group">
             <label>Поколение</label>
-            <select class="form-control select2">
+            <select class="form-control select2 select-generation">
                 <option value="0">Выберите поколение</option>
             </select>
         </div>
@@ -19,13 +19,13 @@
     <div class="col-md-6">
         <div class="form-group">
             <label>Модель</label>
-            <select class="form-control select2">
+            <select class="form-control select2 select-model">
                 <option value="0">Выберите модель</option>
             </select>
         </div>
         <div class="form-group">
             <label>Модификация</label>
-            <select class="form-control select2">
+            <select class="form-control select2 select-modification">
                 <option value="0">Выберите модификацию</option>
             </select>
         </div>

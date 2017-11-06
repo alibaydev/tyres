@@ -2,14 +2,14 @@
 
 namespace Car\Controller\Factory;
 
-use Car\Controller\TireController;
+use Car\Controller\ModelController;
 use Interop\Container\ContainerInterface;
 use Interop\Container\Exception\ContainerException;
 use Zend\ServiceManager\Exception\ServiceNotCreatedException;
 use Zend\ServiceManager\Exception\ServiceNotFoundException;
 use Zend\ServiceManager\Factory\FactoryInterface;
 
-class TireControllerFactory implements FactoryInterface
+class ModelControllerFactory implements FactoryInterface
 {
 
     /**
@@ -27,6 +27,6 @@ class TireControllerFactory implements FactoryInterface
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
         $entityManager = $container->get('doctrine.entitymanager.orm_default');
-        return new TireController($entityManager);
+        return new ModelController($entityManager);
     }
 }
